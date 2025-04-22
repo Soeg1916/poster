@@ -42,7 +42,20 @@ def is_bot_already_running():
         if response.status_code == 409:
             logger.info("Conflict detected: Bot is already running in another instance.")
             return True
-            
+
+# Check if another instance is already running
+if os.environ.get('BYPASS_CONFLICT_CHECK') == 'true':
+    print("BYPASS_CONFLICT_CHECK is set - skipping conflict detection")
+    is_running = False
+else:
+    is_running = is_bot_already_running()
+    
+if is_running:
+    print("Another instance of the bot is already running!")
+    # Rest of the code...
+
+
+        
         # If successful, no other instance is running
         if response.ok:
             logger.info("No conflict detected: Bot is not running elsewhere.")
