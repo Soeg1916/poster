@@ -1,0 +1,10 @@
+flask
+flask-sqlalchemy
+gunicorn
+praw
+psycopg2-binary
+python-telegram-bot==13.15
+requests
+telegram
+trafilatura
+email-validator
