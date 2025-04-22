@@ -1,2 +1,2 @@
-web: gunicorn --bind 0.0.0.0:$PORT main:app
+web: python healthcheck.py
 bot: python run_miku_bot_standalone.py
