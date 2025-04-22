@@ -28,6 +28,11 @@ def is_bot_already_running():
     Returns:
         bool: True if bot is already running, False otherwise
     """
+    # If bypass is enabled, always return False
+    if os.environ.get('BYPASS_CONFLICT_CHECK') == 'true':
+        logger.info("BYPASS_CONFLICT_CHECK is set - skipping conflict detection")
+        return False
+        
     token = os.getenv("TELEGRAM_BOT_TOKEN")
     if not token:
         logger.error("No TELEGRAM_BOT_TOKEN found in environment variables!")
@@ -42,20 +47,7 @@ def is_bot_already_running():
         if response.status_code == 409:
             logger.info("Conflict detected: Bot is already running in another instance.")
             return True
-
-# Check if another instance is already running
-if os.environ.get('BYPASS_CONFLICT_CHECK') == 'true':
-    print("BYPASS_CONFLICT_CHECK is set - skipping conflict detection")
-    is_running = False
-else:
-    is_running = is_bot_already_running()
-    
-if is_running:
-    print("Another instance of the bot is already running!")
-    # Rest of the code...
-
-
-        
+            
         # If successful, no other instance is running
         if response.ok:
             logger.info("No conflict detected: Bot is not running elsewhere.")
