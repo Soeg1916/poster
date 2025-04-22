@@ -8,4 +8,3 @@ requests
 telegram
 trafilatura
 email-validator
-imghdr-backport
