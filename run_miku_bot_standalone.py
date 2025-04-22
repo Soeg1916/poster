@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 """
-Special bot launcher script to run ONLY the Miku bot in the run_miku_bot workflow.
-This completely bypasses Flask app to avoid port conflicts.
+Production-ready script to run the Miku bot in standalone mode.
+This script is designed to be run by itself in production environments like Koyeb.
 """
 import os
 import logging
@@ -12,7 +12,7 @@ import traceback
 import requests
 from bot import setup_bot
 
-# Set up logging
+# Set up logging with more verbose output for production
 logging.basicConfig(
     format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
     level=logging.INFO
