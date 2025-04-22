@@ -22,11 +22,10 @@ COPY . .
 # Set environment variables
 ENV PORT=8000
 ENV PYTHONUNBUFFERED=1
-# IMPORTANT: Add this line to bypass conflict check
 ENV BYPASS_CONFLICT_CHECK=true
 
 # Make scripts executable
 RUN chmod +x run_miku_bot_standalone.py
 
-# Command to run the application with healthcheck server
-CMD ["python", "healthcheck.py"]
+# Command to run the bot directly (without healthcheck)
+CMD ["python", "run_miku_bot_standalone.py"]
